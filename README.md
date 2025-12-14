@@ -1,8 +1,4 @@
-<div align="center">
-  <p>
-    <a href="./README.tr.md">🇹🇷 Türkçe Dokümantasyon için Tıklayın</a>
-  </p>
-</div>
+[🇹🇷 Türkçe Dokümantasyon İçin Tıklayın](https://github.com/Tuncxy/tuncxys-datepicker/blob/main/README.tr.md)
 
 # ⭐ TUNCXYS DATEPICKER
 
@@ -142,7 +138,7 @@ const myDatePickerOptions = {
 
   > **Visual**: Time-only mode.
 
-    <img src="./img/timeOnly.png" width="300">
+    <img src="https://raw.githubusercontent.com/Tuncxy/tuncxys-datepicker/main/img/timeOnly.png" width="300">
 
 * **`enableDate` >** Enables/disables the date section of the datepicker.
 
@@ -152,11 +148,13 @@ const myDatePickerOptions = {
 
   > **Visual**: Date-only mode.
 
-    <img src="./img/dateOnly.png" width="300">
+    <img src="https://raw.githubusercontent.com/Tuncxy/tuncxys-datepicker/main/img/dateOnly.png" width="300">
 
 **NOTE:** If `enableTime` and `enableDate` are both set to false, the datepicker works only in date mode.
 
-<img src="./img/normal.png" width="300">
+> **Visual**: Date + Time mode.
+
+<img src="https://raw.githubusercontent.com/Tuncxy/tuncxys-datepicker/main/img/normal.png" width="300">
 
 ### ⛔ RESTRICTION / LIMIT SETTINGS
 
@@ -170,7 +168,7 @@ const myDatePickerOptions = {
 
   > **Visual**: Disable specific weekdays.
 
-    <img src="./img/disableWeekDays.png" width="300">
+    <img src="https://raw.githubusercontent.com/Tuncxy/tuncxys-datepicker/main/img/disableWeekDays.png" width="300">
 
 * **`disableDates` >** Disables specific dates on the calendar.
 
@@ -180,7 +178,7 @@ const myDatePickerOptions = {
 
   > **Visual**: Disable specific dates.
 
-    <img src="./img/disableDates.png" width="300">
+    <img src="https://raw.githubusercontent.com/Tuncxy/tuncxys-datepicker/main/img/disableDates.png" width="300">
 
 * **`enableLimit` >** Limits the calendar to 1 year.
 
@@ -214,7 +212,7 @@ const myDatePickerOptions = {
 
 > **Visual**: Offset-based limitation example.
 
-<img src="./img/advice1.png" width="300">
+<img src="https://raw.githubusercontent.com/Tuncxy/tuncxys-datepicker/main/img/advice1.png" width="300">
 
 * **`dateLowerLimit` >** Sets the absolute lower limit of the calendar.
 
@@ -226,7 +224,7 @@ const myDatePickerOptions = {
 
   > **Visual**: Absolute lower limit.
 
-    <img src="./img/dateLowerLimit.png" width="300">
+    <img src="https://raw.githubusercontent.com/Tuncxy/tuncxys-datepicker/main/img/dateLowerLimit.png" width="300">
 
 * **`dateUpperLimit` >** Sets the absolute upper limit of the calendar.
 
@@ -238,7 +236,7 @@ const myDatePickerOptions = {
 
   > **Visual**: Absolute upper limit.
 
-    <img src="./img/dateUpperLimit.png" width="300">
+    <img src="https://raw.githubusercontent.com/Tuncxy/tuncxys-datepicker/main/img/dateUpperLimit.png" width="300">
 
 **RECOMMENDATION:** When `dateUpperLimit` is used without `dateLowerLimit`, `minOffset` will be based on `dateUpperLimit` instead of today. The opposite applies as well.
 
@@ -392,7 +390,7 @@ const myDatePickerOptions = {
 
 ## 📄 LICENSE
 
-This project is licensed under the **MIT License**. For more information, please see the [LICENSE](LICENSE) file.
+This project is licensed under the **MIT License**. For more information, please see the [LICENSE](https://github.com/Tuncxy/tuncxys-datepicker/blob/main/LICENSE) file.
 
 In short, you can use, modify, and distribute this library **free of charge** in personal or commercial projects. The only requirement is that the copyright notice in the source code is preserved.
 

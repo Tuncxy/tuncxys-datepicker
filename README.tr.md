@@ -1,8 +1,4 @@
-<div align="center">
-  <p>
-    <a href="./README.md">🇺🇸 For English Documentation Click Here</a>
-  </p>
-</div>
+[🇺🇸 For English Documentation Click Here](https://github.com/Tuncxy/tuncxys-datepicker/blob/main/README.md)
 
 # ⭐ TUNCXYS DATEPICKER
 
@@ -141,7 +137,7 @@ const myDatePickerOptions = {
 
     > **Görsel**: Sadece saat modu.
 
-    <img src="./img/timeOnly.png" width="300">
+    <img src="https://raw.githubusercontent.com/Tuncxy/tuncxys-datepicker/main/img/timeOnly.png" width="300">
 
 * **`enableDate` >** Datepicker'ın tarih kısmını aktif/deaktif eder.
 
@@ -151,13 +147,13 @@ const myDatePickerOptions = {
     
     > **Görsel**: Sadece tarih modu.
 
-    <img src="./img/dateOnly.png" width="300">
+    <img src="https://raw.githubusercontent.com/Tuncxy/tuncxys-datepicker/main/img/dateOnly.png" width="300">
 
 **NOT:** `enableTime` ve `enableDate` değerleri aynı anda false olarak ayarlanırsa datepicker sadece tarih ayarında çalışır.
 
 > **Görsel**: Tarih + Saat modu.
 
-<img src="./img/normal.png" width="300">
+<img src="https://raw.githubusercontent.com/Tuncxy/tuncxys-datepicker/main/img/normal.png" width="300">
 
 ### ⛔ YASAKLAMA / LİMİT AYARLARI
 
@@ -171,7 +167,7 @@ const myDatePickerOptions = {
 
     > **Görsel**: Haftanın belirli günlerini devre dışı bırakma.
 
-    <img src="./img/disableWeekDays.png" width="300">
+    <img src="https://raw.githubusercontent.com/Tuncxy/tuncxys-datepicker/main/img/disableWeekDays.png" width="300">
 
 * **`disableDates` >** Takvimde istenilen tarihleri inaktif yapar.
 
@@ -181,7 +177,7 @@ const myDatePickerOptions = {
 
     > **Görsel**: Belirli tarihleri devre dışı bırakma.
 
-    <img src="./img/disableDates.png" width="300">
+    <img src="https://raw.githubusercontent.com/Tuncxy/tuncxys-datepicker/main/img/disableDates.png" width="300">
 
 * **`enableLimit` >** Takvimi 1 yıl ile sınırlar.
 
@@ -216,7 +212,7 @@ const myDatePickerOptions = {
 
 > **Görsel**: Offset ile sınırlandırma örneği.
 
-<img src="./img/advice1.png" width="300">
+<img src="https://raw.githubusercontent.com/Tuncxy/tuncxys-datepicker/main/img/advice1.png" width="300">
 
 * **`dateLowerLimit` >** Takvimin alt sınırını kesin olarak belirler.
 
@@ -228,7 +224,7 @@ const myDatePickerOptions = {
 
     > **Görsel**: Kesin alt limit örneği.
 
-    <img src="./img/dateLowerLimit.png" width="300">
+    <img src="https://raw.githubusercontent.com/Tuncxy/tuncxys-datepicker/main/img/dateLowerLimit.png" width="300">
 
 * **`dateUpperLimit` >** Takvimin üst sınırını kesin olarak belirler.
 
@@ -240,7 +236,7 @@ const myDatePickerOptions = {
 
     > **Görsel**: Kesin üst limit örneği.
 
-    <img src="./img/dateUpperLimit.png" width="300">
+    <img src="https://raw.githubusercontent.com/Tuncxy/tuncxys-datepicker/main/img/dateUpperLimit.png" width="300">
 
 **ÖNERİ:** `dateUpperLimit` değişkeni kullanıldığında eğer `dateLowerLimit` kullanılmamışsa `minOffset` değişkenine girilen değer artık günümüzü değil `dateUpperLimit` değerini baz alarak çalışır aynı durum tersi için de geçerlidir.
 
@@ -392,7 +388,7 @@ const myDatePickerOptions = {
    ```
 ## 📄 LİSANS
 
-Bu proje **MIT Lisansı** altında lisanslanmıştır. Detaylı bilgi için [LICENSE](LICENSE) dosyasına göz atabilirsiniz.
+Bu proje **MIT Lisansı** altında lisanslanmıştır. Detaylı bilgi için [LICENSE](https://github.com/Tuncxy/tuncxys-datepicker/blob/main/LICENSE) dosyasına göz atabilirsiniz.
 
 Özetle; bu kütüphaneyi **kişisel veya ticari** projelerinizde ücretsiz olarak kullanabilir, değiştirebilir ve dağıtabilirsiniz. Tek şart, kaynak kodundaki telif hakkı ibaresinin korunmasıdır.
 
