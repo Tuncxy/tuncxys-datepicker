@@ -1,0 +1,68 @@
+name: 🐞 Bug Report
+description: Create a report to help us improve Tuncxys DatePicker.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the Bug
+      description: A clear and concise description of what the bug is.
+      placeholder: For example, the calendar does not close when I click outside...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: To Reproduce
+      description: Steps to reproduce the behavior.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment (Browser & Version)
+      description: e.g. Chrome 90, Safari 14, Firefox 88
+      placeholder: Chrome 110.0.5481.100
+    validations:
+      required: true
+
+  - type: dropdown
+    id: framework
+    attributes:
+      label: Framework / Usage
+      description: How are you using the library?
+      options:
+        - Vanilla JS (No Framework)
+        - React
+        - Vue
+        - Angular
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain your problem.
