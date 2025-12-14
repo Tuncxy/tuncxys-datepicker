@@ -1,0 +1,351 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuncxy's DatePicker Demo</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./dist/tuncxys-datepicker.css">
+
+    <style>
+        :root {
+            --bg-color: #0b0e14;
+            --card-bg: #151a23;
+            --primary: #fbbf24;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border: #2d3748;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, transparent 70%);
+            padding-top: 60px;
+            gap: 50px;
+            box-sizing: border-box;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 15px;
+            z-index: 1;
+            padding: 0 20px;
+        }
+
+        .btn-github {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+            .btn-github:hover {
+                background: var(--text-main);
+                color: var(--bg-color);
+                border-color: var(--text-main);
+            }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        p.subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin: 0;
+            max-width: 550px;
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        .demo-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 10;
+        }
+
+        .theme-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .btn-theme {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease;
+        }
+
+            .btn-theme:hover {
+                background: rgba(255, 255, 255, 0.1);
+                color: var(--text-main);
+                border-color: #94a3b8;
+            }
+
+            .btn-theme.active {
+                background: var(--text-main);
+                color: var(--bg-color);
+                border-color: var(--text-main);
+                font-weight: 600;
+            }
+
+        .switch-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .switch-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+            .switch-wrapper:hover {
+                color: var(--text-main);
+            }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 16px;
+                width: 16px;
+                left: 4px;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: var(--text-muted);
+                transition: .4s;
+                border-radius: 50%;
+            }
+
+        input:checked + .slider {
+            background-color: var(--text-main);
+            border-color: var(--text-main);
+        }
+
+            input:checked + .slider:before {
+                transform: translate(18px, -50%);
+                background-color: var(--bg-color);
+            }
+
+        footer {
+            margin-top: auto;
+            padding-bottom: 20px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .demo-container {
+                padding: 25px;
+                width: 90%;
+            }
+
+            body {
+                padding-top: 40px;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="https://github.com/Tuncxy/tuncxys-datepicker" target="_blank" class="btn-github">
+            <i class="ri-github-fill"></i> GitHub
+        </a>
+
+        <h1>Tuncxy's DatePicker</h1>
+
+        <p class="subtitle">
+            Lightweight, independent, and fully customizable date picker for modern web projects.
+        </p>
+    </header>
+
+    <div class="demo-container">
+        <div id="my-datepicker"></div>
+
+        <div class="theme-controls">
+            <button class="btn-theme active" onclick="changeTheme('default', this)">Default</button>
+            <button class="btn-theme" onclick="changeTheme('dark', this)">Dark</button>
+            <button class="btn-theme" onclick="changeTheme('custom', this)">Custom</button>
+        </div>
+
+        <div class="switch-container">
+            <div class="switch-wrapper" onclick="document.getElementById('checkDate').click()">
+                <span>Date</span>
+                <label class="switch" onclick="event.stopPropagation()">
+                    <input type="checkbox" id="checkDate" checked onchange="refreshPicker()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="switch-wrapper" onclick="document.getElementById('checkTime').click()">
+                <span>Time</span>
+                <label class="switch" onclick="event.stopPropagation()">
+                    <input type="checkbox" id="checkTime" checked onchange="refreshPicker()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Copyright &copy; 2025 Tuncxy
+    </footer>
+
+    <script src="./dist/tuncxys-datepicker.umd.js"></script>
+
+    <script>
+        let pickerInstance = null;
+        let activeTheme = 'default';
+
+        const customColors = {
+            background: '#0f172a',
+            border: '#334155',
+            borderFocus: '#fbbf24',
+            text: '#f1f5f9',
+            placeholder: '#64748b',
+            icon: '#fbbf24',
+            iconHoverBg: '#1e293b',
+            selectionBg: '#fbbf24',
+            selectionText: '#0f172a',
+            weekDayText: '#94a3b8',
+            passiveText: '#475569',
+            hoverBg: '#1e293b',
+            selectedBg: '#fbbf24',
+            selectedText: '#0f172a',
+            todayBg: 'rgba(251, 191, 36, 0.15)',
+            todayText: '#fbbf24',
+            restricted: '#ef4444',
+            error: '#ef4444',
+            toastBg: '#b91c1c',
+            toastText: '#fee2e2',
+            timeHeader: '#94a3b8',
+            timeNum: '#475569',
+            timeNumActive: '#fbbf24',
+            timeSeparator: '#334155',
+            timeGradStart: 'rgba(15, 23, 42, 1)',
+            timeGradEnd: 'rgba(15, 23, 42, 0)'
+        };
+
+        function refreshPicker() {
+            if (pickerInstance) pickerInstance.destroy();
+
+            const isDateEnabled = document.getElementById('checkDate').checked;
+            const isTimeEnabled = document.getElementById('checkTime').checked;
+            
+            let options = {
+                lang: 'en',
+                width: '100%',
+                theme: activeTheme,
+                enableDate: isDateEnabled,
+                enableTime: isTimeEnabled
+            };
+
+            if (activeTheme === 'custom') {
+                options.colors = customColors;
+            }
+
+            // UMD sürümü sayesinde TuncxysDatePicker global window nesnesinde mevcut
+            pickerInstance = new TuncxysDatePicker('#my-datepicker', options);
+        }
+
+        function changeTheme(themeName, btnElement) {
+            activeTheme = themeName;
+            document.querySelectorAll('.btn-theme').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+            refreshPicker();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            refreshPicker();
+        });
+    </script>
+
+</body>
+</html>

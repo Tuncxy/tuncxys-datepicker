@@ -1,0 +1,32 @@
+{
+  "name": "tuncxys-datepicker",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/tuncxys-datepicker.umd.js",
+  "module": "./dist/tuncxys-datepicker.es.js",
+  "types": "./tuncxys-datepicker.d.ts",
+  "exports": {
+    ".": {
+      "types": "./tuncxys-datepicker.d.ts",
+      "import": "./dist/tuncxys-datepicker.es.js",
+      "require": "./dist/tuncxys-datepicker.umd.js"
+    },
+    "./css": "./dist/tuncxys-datepicker.css"
+  },
+  "files": [
+    "dist",
+    "tuncxys-datepicker.d.ts",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^7.2.7"
+  },
+  "author": "Tuncxy",
+  "license": "MIT"
+}
