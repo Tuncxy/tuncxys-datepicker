@@ -5,11 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.4] - 2025-12-16
+## [1.0.5] - 2025-12-17
 
-### 🐛 Fixed
-- **Mobile Touch Interaction:** Resolved a critical issue on mobile browsers (e.g., Opera GX, Chrome Android) where scrolling the time picker caused the popup to close unexpectedly.
-- **Event Bubbling:** Added `stopPropagation` to touch and mouse events on popups to prevent false "outside click" detection during interactions.
+### Fixed
+- Fixed a critical UX issue on mobile browsers (specifically Opera GX Mobile and iOS Safari) where the popup would close unexpectedly when the address bar resized.
+- Fixed scroll chaining issues in the time picker using CSS `overscroll-behavior` and `touch-action`, ensuring the background page stays static while scrolling values.
+
+### Changed
+- Reverted the body scroll locking mechanism introduced in v1.0.4 to avoid potential UX conflicts, relying on CSS solutions instead.
+
+*Note: v1.0.4 was skipped due to an internal registry conflict.*
 
 ## [1.0.3] - 2025-12-16
 

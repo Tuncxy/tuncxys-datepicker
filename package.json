@@ -1,6 +1,6 @@
 {
   "name": "tuncxys-datepicker",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "type": "module",
   "main": "./dist/tuncxys-datepicker.umd.js",
   "module": "./dist/tuncxys-datepicker.es.js",

@@ -1,4 +1,4 @@
-﻿/*!
+﻿﻿﻿/*!
  * Tuncxys DatePicker v1.0.0
  * Copyright (c) 2025 Tuncxy
  * Licensed under MIT (https://github.com/Tuncxy/tuncxys-datepicker)
@@ -470,7 +470,7 @@
     height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
-    overscroll-behavior-x: none;
+    overscroll-behavior: contain;
     touch-action: pan-y;
     scroll-snap-type: y mandatory;
     text-align: center;

@@ -1,4 +1,4 @@
-﻿/*!
+﻿﻿/*!
  * Tuncxys DatePicker v1.0.0
  * Copyright (c) 2025 Tuncxy
  * Licensed under MIT (https://github.com/Tuncxy/tuncxys-datepicker)
@@ -13,6 +13,7 @@ export default class TuncxysDatePicker {
     constructor(selector, options = {}) {
         this.options = options;
         this.lastSentValue = null;
+        this.isInteracting = false;
 
         
         const inputLang = options.lang || 'en'; 
@@ -40,6 +41,8 @@ export default class TuncxysDatePicker {
         };
 
         this.onWindowResize = () => {
+            if (this.isInteracting) return;
+
             if (this.resizeRequest) cancelAnimationFrame(this.resizeRequest);
     
             this.resizeRequest = requestAnimationFrame(() => {
@@ -455,15 +458,29 @@ export default class TuncxysDatePicker {
         const popups = [this.dom.calendarPopup, this.dom.timePopup, this.dom.yearPickerView];
         
         popups.forEach(popup => {
-            if (popup) {
-                popup.addEventListener('click', stopPropagation);
-                popup.addEventListener('mousedown', stopPropagation);
-                popup.addEventListener('mouseup', stopPropagation);
-                
-                popup.addEventListener('touchstart', stopPropagation, { passive: true });
-                popup.addEventListener('touchmove', stopPropagation, { passive: true });
-                popup.addEventListener('touchend', stopPropagation, { passive: true });
-            }
+            if (!popup) return;
+
+            const stopProp = (e) => e.stopPropagation();
+            popup.addEventListener('click', stopProp);
+            popup.addEventListener('mousedown', stopProp);
+            popup.addEventListener('mouseup', stopProp);
+            
+            popup.addEventListener('touchstart', (e) => {
+                this.isInteracting = true; 
+                e.stopPropagation();
+            }, { passive: true });
+
+            popup.addEventListener('touchmove', (e) => {
+                this.isInteracting = true;
+                e.stopPropagation();
+            }, { passive: true });
+
+            popup.addEventListener('touchend', (e) => {
+                setTimeout(() => {
+                    this.isInteracting = false; 
+                }, 250); 
+                e.stopPropagation();
+            }, { passive: true });
         });
     }
 
