@@ -7,13 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.4] - 2025-12-16
 
-### 🐛 Fixed
+### Fixed
 - **Mobile Touch Interaction:** Resolved a critical issue on mobile browsers (e.g., Opera GX, Chrome Android) where scrolling the time picker caused the popup to close unexpectedly.
 - **Event Bubbling:** Added `stopPropagation` to touch and mouse events on popups to prevent false "outside click" detection during interactions.
 
 ## [1.0.3] - 2025-12-16
 
-### 🐛 Fixed
+### Fixed
 - **Mobile UX Improvement:** Fixed an issue where the virtual keyboard remained open when clicking the calendar or clock icons. The input is now automatically blurred to force-close the keyboard on mobile devices.
 - **Time Picker Scrolling:** Resolved unwanted horizontal scrolling and "rubber-banding" effects on time picker columns. Added `touch-action: pan-y` and `overscroll-behavior` to ensure smooth vertical-only scrolling on touch screens (iOS & Android).
 
