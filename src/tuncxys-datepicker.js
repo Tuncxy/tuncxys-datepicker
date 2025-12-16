@@ -654,6 +654,7 @@ export default class TuncxysDatePicker {
 
     toggleCalendar() {
         if (!this.enableDate) return;
+        this.dom.input.blur();
         if (this.dom.timePopup) this.dom.timePopup.classList.remove('active');
         this.dom.calendarPopup.classList.toggle('active');
 
@@ -675,6 +676,7 @@ export default class TuncxysDatePicker {
 
     toggleClock() {
         if (!this.enableTime) return;
+        this.dom.input.blur();
         if (this.dom.calendarPopup) this.dom.calendarPopup.classList.remove('active');
         this.dom.timePopup.classList.toggle('active');
 

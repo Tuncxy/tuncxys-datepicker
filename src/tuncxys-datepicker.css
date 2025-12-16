@@ -469,6 +469,9 @@
     flex: 1;
     height: 100%;
     overflow-y: scroll;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+    touch-action: pan-y;
     scroll-snap-type: y mandatory;
     text-align: center;
     scrollbar-width: none;

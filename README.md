@@ -29,6 +29,8 @@ Most datepickers are either heavy, dependency-bound, or painful to customize. Tu
     
     *!! Use this method if you are working with standard HTML/CSS/JS.*
 
+    **`METHOD 1: MANUAL IMPORT`**
+
     Download the `tuncxys-datepicker.css` and `tuncxys-datepicker.umd.js` files from the `dist` folder in the root directory and add them to your project folder.
 
     Then add the `tuncxys-datepicker.css` and `tuncxys-datepicker.umd.js` files to your HTML page.
@@ -36,6 +38,15 @@ Most datepickers are either heavy, dependency-bound, or painful to customize. Tu
    ```html
    <link rel="stylesheet" href="path/to/tuncxys-datepicker.css">
    <script src="path/to/tuncxys-datepicker.umd.js"></script>
+   ```
+
+   **`METHOD 2: IMPORT WITH CDN LINK`**
+
+   Add the `tuncxys-datepicker.css` and `tuncxys-datepicker.umd.js` files to your HTML page with CDN Link.
+
+   ```html
+   <link rel="stylesheet" href="https://unpkg.com/tuncxys-datepicker@latest/dist/tuncxys-datepicker.css">
+   <script src="https://unpkg.com/tuncxys-datepicker@latest/dist/tuncxys-datepicker.umd.js"></script>
    ```
 
 * **OPTION B: MODERN METHOD (Next Gen / ES Modules)**

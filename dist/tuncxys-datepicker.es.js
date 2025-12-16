@@ -677,7 +677,7 @@ class b {
     }
   }
   toggleCalendar() {
-    if (this.enableDate && (this.dom.timePopup && this.dom.timePopup.classList.remove("active"), this.dom.calendarPopup.classList.toggle("active"), this.dom.calendarPopup.classList.contains("active"))) {
+    if (this.enableDate && (this.dom.input.blur(), this.dom.timePopup && this.dom.timePopup.classList.remove("active"), this.dom.calendarPopup.classList.toggle("active"), this.dom.calendarPopup.classList.contains("active"))) {
       if (this.selectedDay === null) {
         let e;
         const t = new Date(this.realToday).setHours(0, 0, 0, 0), i = this.minDate.getTime(), s = this.maxDate.getTime();
@@ -687,7 +687,7 @@ class b {
     }
   }
   toggleClock() {
-    this.enableTime && (this.dom.calendarPopup && this.dom.calendarPopup.classList.remove("active"), this.dom.timePopup.classList.toggle("active"), this.dom.timePopup.classList.contains("active") && (this.setPopupPosition(this.dom.timePopup), setTimeout(() => {
+    this.enableTime && (this.dom.input.blur(), this.dom.calendarPopup && this.dom.calendarPopup.classList.remove("active"), this.dom.timePopup.classList.toggle("active"), this.dom.timePopup.classList.contains("active") && (this.setPopupPosition(this.dom.timePopup), setTimeout(() => {
       this.scrollToValues(this.selectedHour, this.selectedMinute, this.selectedSecond);
     }, 10)));
   }

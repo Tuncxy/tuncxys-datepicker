@@ -29,6 +29,8 @@
     
     *!! Standart HTML/CSS/JS ile çalışıyorsanız bu yöntemi kullanın.*
 
+    **`YÖNTEM 1: MANUEL IMPORT`**
+
     Ana dizindeki `dist` klasöründen `tuncxys-datepicker.css` ve `tuncxys-datepicker.umd.js` dosyalarını indirerek proje dosyanıza ekleyin.
 
     Ardından HTML sayfanıza `tuncxys-datepicker.css` ve `tuncxys-datepicker.umd.js` dosyalarını ekleyin.
@@ -36,6 +38,15 @@
    ```html
    <link rel="stylesheet" href="path/to/tuncxys-datepicker.css">
    <script src="path/to/tuncxys-datepicker.umd.js"></script>
+   ```
+
+   **`YÖNTEM 2: CDN LINK ILE IMPORT`**
+
+   CDN Link ile HTML sayfanıza `tuncxys-datepicker.css` ve `tuncxys-datepicker.umd.js` dosyalarını ekleyin.
+
+   ```html
+   <link rel="stylesheet" href="https://unpkg.com/tuncxys-datepicker@latest/dist/tuncxys-datepicker.css">
+   <script src="https://unpkg.com/tuncxys-datepicker@latest/dist/tuncxys-datepicker.umd.js"></script>
    ```
 
 * **SEÇENEK B: MODERN YÖNTEM (Yeni Nesil / ES Modules)**
