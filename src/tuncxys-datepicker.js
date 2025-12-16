@@ -448,6 +448,23 @@ export default class TuncxysDatePicker {
                 this.updateFullInputString();
             });
         }
+        const stopPropagation = (e) => {
+            e.stopPropagation();
+        };
+
+        const popups = [this.dom.calendarPopup, this.dom.timePopup, this.dom.yearPickerView];
+        
+        popups.forEach(popup => {
+            if (popup) {
+                popup.addEventListener('click', stopPropagation);
+                popup.addEventListener('mousedown', stopPropagation);
+                popup.addEventListener('mouseup', stopPropagation);
+                
+                popup.addEventListener('touchstart', stopPropagation, { passive: true });
+                popup.addEventListener('touchmove', stopPropagation, { passive: true });
+                popup.addEventListener('touchend', stopPropagation, { passive: true });
+            }
+        });
     }
 
     destroy() {

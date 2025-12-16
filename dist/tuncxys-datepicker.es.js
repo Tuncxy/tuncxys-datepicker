@@ -329,45 +329,45 @@ class b {
       console.error(this.lang.console.notFound.replace("{selector}", e));
       return;
     }
-    this.onDocumentClick = (d) => {
-      const m = this.dom && this.dom.wrapper && this.dom.wrapper.contains(d.target), h = this.dom && this.dom.calendarPopup && this.dom.calendarPopup.contains(d.target), c = this.dom && this.dom.timePopup && this.dom.timePopup.contains(d.target);
-      !m && !h && !c && this.closePickers();
+    this.onDocumentClick = (u) => {
+      const a = this.dom && this.dom.wrapper && this.dom.wrapper.contains(u.target), n = this.dom && this.dom.calendarPopup && this.dom.calendarPopup.contains(u.target), h = this.dom && this.dom.timePopup && this.dom.timePopup.contains(u.target);
+      !a && !n && !h && this.closePickers();
     }, this.onWindowResize = () => {
       this.resizeRequest && cancelAnimationFrame(this.resizeRequest), this.resizeRequest = requestAnimationFrame(() => {
         this.closePickers();
       });
     }, this.submitName = t.submitName || "date_output", this.fixedWidth = t.width || "300px", this.theme = t.theme || "default", this.colors = t.colors || {}, this.enableDate = t.enableDate !== void 0 ? t.enableDate : !0, this.enableTime = t.enableTime !== void 0 ? t.enableTime : !0, !this.enableDate && !this.enableTime && (this.enableDate = !0), this.disableWeekDays = t.disableWeekDays || [], this.disableDates = t.disableDates || [], this.enableLimit = t.enableLimit || !1, this.enableDayLimit = t.enableDayLimit || !1, this.minOffset = t.minOffset !== void 0 ? t.minOffset : 100, this.maxOffset = t.maxOffset !== void 0 ? t.maxOffset : 100, this.container.style.width = this.fixedWidth, this.container.style.maxWidth = "100%", this.monthNames = this.lang.months, this.realToday = /* @__PURE__ */ new Date();
-    const s = (d) => {
-      if (!d) return null;
-      if (d instanceof Date) return isNaN(d.getTime()) ? null : new Date(d.setHours(0, 0, 0, 0));
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return null;
-      const h = d.split("-"), c = parseInt(h[0], 10), u = parseInt(h[1], 10), p = parseInt(h[2], 10);
-      if (u < 1 || u > 12) return null;
-      const g = new Date(c, u - 1, p);
-      return g.getFullYear() !== c || g.getMonth() !== u - 1 || g.getDate() !== p ? null : (g.setHours(0, 0, 0, 0), g);
-    }, r = (d, m) => Math.round((d - m) / (1e3 * 60 * 60 * 24));
-    let a = s(t.dateUpperLimit), o = s(t.dateLowerLimit);
-    (t.dateUpperLimit && !a || t.dateLowerLimit && !o) && (console.warn(this.lang.console.limitWarning), this.enableLimit = !1, this.enableDayLimit = !1, this.minOffset = 100, this.maxOffset = 100, a = null, o = null);
+    const s = (u) => {
+      if (!u) return null;
+      if (u instanceof Date) return isNaN(u.getTime()) ? null : new Date(u.setHours(0, 0, 0, 0));
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(u)) return null;
+      const n = u.split("-"), h = parseInt(n[0], 10), m = parseInt(n[1], 10), p = parseInt(n[2], 10);
+      if (m < 1 || m > 12) return null;
+      const g = new Date(h, m - 1, p);
+      return g.getFullYear() !== h || g.getMonth() !== m - 1 || g.getDate() !== p ? null : (g.setHours(0, 0, 0, 0), g);
+    }, o = (u, a) => Math.round((u - a) / (1e3 * 60 * 60 * 24));
+    let r = s(t.dateUpperLimit), d = s(t.dateLowerLimit);
+    (t.dateUpperLimit && !r || t.dateLowerLimit && !d) && (console.warn(this.lang.console.limitWarning), this.enableLimit = !1, this.enableDayLimit = !1, this.minOffset = 100, this.maxOffset = 100, r = null, d = null);
     const l = new Date(this.realToday.getFullYear(), this.realToday.getMonth(), this.realToday.getDate());
-    if (this.enableDayLimit === !0 && (a || o))
-      if (a && o && a < o && ([a, o] = [o, a]), a && !o) {
-        const d = r(a, l);
-        this.maxOffset = d, this.minOffset -= d;
-      } else if (!a && o) {
-        const d = r(l, o);
-        this.minOffset = d, this.maxOffset += r(o, l);
+    if (this.enableDayLimit === !0 && (r || d))
+      if (r && d && r < d && ([r, d] = [d, r]), r && !d) {
+        const u = o(r, l);
+        this.maxOffset = u, this.minOffset -= u;
+      } else if (!r && d) {
+        const u = o(l, d);
+        this.minOffset = u, this.maxOffset += o(d, l);
       } else
-        this.maxOffset = r(a, l), this.minOffset = r(l, o);
+        this.maxOffset = o(r, l), this.minOffset = o(l, d);
     this.currentDate = /* @__PURE__ */ new Date(), this.currentMonth = this.currentDate.getMonth(), this.currentYear = this.currentDate.getFullYear(), this.selectedDay = null, this.selectedMonth = null, this.selectedYear = null, this.selectedHour = "03", this.selectedMinute = "00", this.selectedSecond = "00", this.inputBuffer = "", this.activeSegmentIndex = 0, this.SEGMENTS = [];
-    let n = 0;
+    let c = 0;
     this.enableDate && (this.SEGMENTS.push(
       { type: "day", start: 0, end: 2, maxLen: 2, min: 1, max: 31 },
       { type: "month", start: 3, end: 5, maxLen: 2, min: 1, max: 12 },
       { type: "year", start: 6, end: 10, maxLen: 4, min: 1900, max: 2100 }
-    ), n = 11), this.enableTime && this.SEGMENTS.push(
-      { type: "hour", start: n, end: n + 2, maxLen: 2, min: 0, max: 23 },
-      { type: "minute", start: n + 3, end: n + 5, maxLen: 2, min: 0, max: 59 },
-      { type: "second", start: n + 6, end: n + 8, maxLen: 2, min: 0, max: 59 }
+    ), c = 11), this.enableTime && this.SEGMENTS.push(
+      { type: "hour", start: c, end: c + 2, maxLen: 2, min: 0, max: 23 },
+      { type: "minute", start: c + 3, end: c + 5, maxLen: 2, min: 0, max: 59 },
+      { type: "second", start: c + 6, end: c + 8, maxLen: 2, min: 0, max: 59 }
     ), this.calculateLimits(), (this.enableLimit || this.enableDayLimit) && (this.currentMonth = this.minDate.getMonth(), this.currentYear = this.minDate.getFullYear()), this.init();
   }
   calculateLimits() {
@@ -388,11 +388,11 @@ class b {
     if (!e || !this.dom.inputGroup) return;
     const t = this.dom.inputGroup.getBoundingClientRect(), i = window.scrollY || document.documentElement.scrollTop, s = window.scrollX || document.documentElement.scrollLeft;
     e.style.width = `${t.width}px`;
-    const r = e.offsetWidth, a = e.offsetHeight || 350;
-    let o = t.bottom + i + 8;
-    window.innerHeight - t.bottom < a && t.top > a && (o = t.top + i - a - 8);
-    let n = t.left + s + t.width / 2 - r / 2;
-    e.style.top = `${o}px`, e.style.left = `${n}px`;
+    const o = e.offsetWidth, r = e.offsetHeight || 350;
+    let d = t.bottom + i + 8;
+    window.innerHeight - t.bottom < r && t.top > r && (d = t.top + i - r - 8);
+    let c = t.left + s + t.width / 2 - o / 2;
+    e.style.top = `${d}px`, e.style.left = `${c}px`;
   }
   applyTheme() {
     let e = "", t = "";
@@ -425,8 +425,8 @@ class b {
         selectionBg: "--txydp-selection-bg",
         selectionText: "--txydp-selection-text"
       }, s = [];
-      for (const [r, a] of Object.entries(i))
-        this.colors[r] && s.push(`${a}: ${this.colors[r]}`);
+      for (const [o, r] of Object.entries(i))
+        this.colors[o] && s.push(`${r}: ${this.colors[o]}`);
       e = s.join(";");
     } else this.theme === "dark" && (t = "theme-dark");
     t && this.dom.wrapper.classList.add(t), e && (this.dom.wrapper.style.cssText = e), [this.dom.calendarPopup, this.dom.timePopup, this.dom.warningMsg].forEach((i) => {
@@ -436,7 +436,7 @@ class b {
   buildHTML() {
     let e = [];
     this.enableDate && e.push(this.lang.placeholderDate), this.enableTime && e.push("SS:DD:nn");
-    const t = e.join(" "), i = this.lang.weekdays.map((l) => `<div>${l}</div>`).join(""), s = this.enableDate ? '<div class="txydp-btn txydp-calendar-btn"><svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" /></svg></div>' : "", r = this.enableTime ? '<div class="txydp-btn txydp-clock-btn"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" /></svg></div>' : "", a = this.enableDate ? `
+    const t = e.join(" "), i = this.lang.weekdays.map((l) => `<div>${l}</div>`).join(""), s = this.enableDate ? '<div class="txydp-btn txydp-calendar-btn"><svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" /></svg></div>' : "", o = this.enableTime ? '<div class="txydp-btn txydp-clock-btn"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" /></svg></div>' : "", r = this.enableDate ? `
         <div class="txydp-popup txydp-calendar-popup">
             <div class="txydp-calendar-header">
                 <div class="txydp-nav-btn txydp-prev-month"><svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" /></svg></div>
@@ -445,7 +445,7 @@ class b {
             </div>
             <div class="txydp-calendar-grid-view"><div class="txydp-weekdays">${i}</div><div class="txydp-days"></div></div>
             <div class="txydp-year-picker"></div>
-        </div>` : "", o = this.enableTime ? `
+        </div>` : "", d = this.enableTime ? `
         <div class="txydp-popup txydp-time-popup">
             <div class="txydp-time-labels"><div class="txydp-time-label">${this.lang.timeHeaders[0]}</div><div class="txydp-time-label">${this.lang.timeHeaders[1]}</div><div class="txydp-time-label">${this.lang.timeHeaders[2]}</div></div>
             <div class="txydp-time-container"><div class="txydp-highlight"></div><div class="txydp-time-col txydp-hour-col"></div><div class="txydp-time-col txydp-minute-col"></div><div class="txydp-time-col txydp-second-col"></div></div>
@@ -461,10 +461,10 @@ class b {
         <div class="txydp-warning-message"></div>
         <div class="txydp-input-group">
             <input type="text" name="${this.submitName}_display" inputmode="numeric" class="txydp-date-input" placeholder="${t}" spellcheck="false" autocomplete="off">
-            <div class="txydp-icons">${s}${r}</div>
+            <div class="txydp-icons">${s}${o}</div>
         </div>
-        ${a}
-        ${o}
+        ${r}
+        ${d}
     </div>`;
   }
   cacheDOM() {
@@ -493,45 +493,51 @@ class b {
     };
   }
   bindEvents() {
-    const { input: e, calendarBtn: t, clockBtn: i, prevBtn: s, nextBtn: r, monthYearDisplay: a, controlBtns: o } = this.dom;
-    document.addEventListener("click", this.onDocumentClick), window.addEventListener("resize", this.onWindowResize), window.addEventListener("scroll", this.onWindowResize), o && o.length > 0 && o.forEach((n) => {
-      n.addEventListener("click", (d) => {
-        d.preventDefault(), d.stopPropagation(), d.stopImmediatePropagation();
-        const m = n.dataset.unit, h = n.dataset.dir;
-        this.scrollTimeButton(m, h);
-      }), n.addEventListener("mousedown", (d) => {
-        d.preventDefault(), d.stopPropagation();
+    const { input: e, calendarBtn: t, clockBtn: i, prevBtn: s, nextBtn: o, monthYearDisplay: r, controlBtns: d } = this.dom;
+    document.addEventListener("click", this.onDocumentClick), window.addEventListener("resize", this.onWindowResize), window.addEventListener("scroll", this.onWindowResize), d && d.length > 0 && d.forEach((a) => {
+      a.addEventListener("click", (n) => {
+        n.preventDefault(), n.stopPropagation(), n.stopImmediatePropagation();
+        const h = a.dataset.unit, m = a.dataset.dir;
+        this.scrollTimeButton(h, m);
+      }), a.addEventListener("mousedown", (n) => {
+        n.preventDefault(), n.stopPropagation();
       });
-    }), e.addEventListener("dragstart", (n) => n.preventDefault()), e.addEventListener("drop", (n) => n.preventDefault()), e.addEventListener("blur", () => {
+    }), e.addEventListener("dragstart", (a) => a.preventDefault()), e.addEventListener("drop", (a) => a.preventDefault()), e.addEventListener("blur", () => {
       this.inputBuffer.length > 0 && this.finalizeInput(this.activeSegmentIndex, !0);
-      let n = this.getParsedDateFromInput();
-      this.enableDate && !isNaN(n.y) && (this.validateDayCountInMonth(), this.updateInputValue("year", n.y.toString().padStart(4, "0"), !0, !0)), this.inputBuffer = "";
+      let a = this.getParsedDateFromInput();
+      this.enableDate && !isNaN(a.y) && (this.validateDayCountInMonth(), this.updateInputValue("year", a.y.toString().padStart(4, "0"), !0, !0)), this.inputBuffer = "";
     }), e.addEventListener("click", () => {
-      const n = e.selectionStart;
-      for (let d = 0; d < this.SEGMENTS.length; d++)
-        if (n >= this.SEGMENTS[d].start && n <= this.SEGMENTS[d].end) {
-          this.inputBuffer.length > 0 && this.activeSegmentIndex !== d && this.finalizeInput(this.activeSegmentIndex), this.activeSegmentIndex = d, this.selectSegment(d);
+      const a = e.selectionStart;
+      for (let n = 0; n < this.SEGMENTS.length; n++)
+        if (a >= this.SEGMENTS[n].start && a <= this.SEGMENTS[n].end) {
+          this.inputBuffer.length > 0 && this.activeSegmentIndex !== n && this.finalizeInput(this.activeSegmentIndex), this.activeSegmentIndex = n, this.selectSegment(n);
           break;
         }
-    }), e.addEventListener("keydown", (n) => this.handleKeydown(n));
-    const l = (n) => {
-      n.preventDefault(), n.stopPropagation(), n.stopImmediatePropagation();
+    }), e.addEventListener("keydown", (a) => this.handleKeydown(a));
+    const l = (a) => {
+      a.preventDefault(), a.stopPropagation(), a.stopImmediatePropagation();
     };
-    t && (t.addEventListener("click", (n) => {
-      l(n), this.toggleCalendar();
-    }), t.addEventListener("mousedown", l), t.addEventListener("mouseup", l)), i && (i.addEventListener("click", (n) => {
-      l(n), this.toggleClock();
-    }), i.addEventListener("mousedown", l), i.addEventListener("mouseup", l)), this.enableDate && (s.addEventListener("click", (n) => {
-      n.stopPropagation(), !s.classList.contains("disabled") && (this.currentMonth--, this.currentMonth < 0 && (this.currentMonth = 11, this.currentYear--), this.renderCalendar(this.currentMonth, this.currentYear));
-    }), r.addEventListener("click", (n) => {
-      n.stopPropagation(), !r.classList.contains("disabled") && (this.currentMonth++, this.currentMonth > 11 && (this.currentMonth = 0, this.currentYear++), this.renderCalendar(this.currentMonth, this.currentYear));
-    }), this.enableLimit || (a.classList.add("interactive"), a.addEventListener("click", (n) => this.toggleYearView(n))), this.dom.calendarDays.addEventListener("click", (n) => {
-      const d = n.target.closest(".txydp-day");
-      if (!d || d.style.visibility === "hidden" || d.style.pointerEvents === "none") return;
-      n.stopPropagation();
-      const m = parseInt(d.innerText);
-      d.classList.contains("other-month") && (m > 15 ? (this.currentMonth--, this.currentMonth < 0 && (this.currentMonth = 11, this.currentYear--)) : (this.currentMonth++, this.currentMonth > 11 && (this.currentMonth = 0, this.currentYear++))), this.selectedDay = m, this.selectedMonth = this.currentMonth, this.selectedYear = this.currentYear, this.renderCalendar(this.currentMonth, this.currentYear), this.updateFullInputString();
+    t && (t.addEventListener("click", (a) => {
+      l(a), this.toggleCalendar();
+    }), t.addEventListener("mousedown", l), t.addEventListener("mouseup", l)), i && (i.addEventListener("click", (a) => {
+      l(a), this.toggleClock();
+    }), i.addEventListener("mousedown", l), i.addEventListener("mouseup", l)), this.enableDate && (s.addEventListener("click", (a) => {
+      a.stopPropagation(), !s.classList.contains("disabled") && (this.currentMonth--, this.currentMonth < 0 && (this.currentMonth = 11, this.currentYear--), this.renderCalendar(this.currentMonth, this.currentYear));
+    }), o.addEventListener("click", (a) => {
+      a.stopPropagation(), !o.classList.contains("disabled") && (this.currentMonth++, this.currentMonth > 11 && (this.currentMonth = 0, this.currentYear++), this.renderCalendar(this.currentMonth, this.currentYear));
+    }), this.enableLimit || (r.classList.add("interactive"), r.addEventListener("click", (a) => this.toggleYearView(a))), this.dom.calendarDays.addEventListener("click", (a) => {
+      const n = a.target.closest(".txydp-day");
+      if (!n || n.style.visibility === "hidden" || n.style.pointerEvents === "none") return;
+      a.stopPropagation();
+      const h = parseInt(n.innerText);
+      n.classList.contains("other-month") && (h > 15 ? (this.currentMonth--, this.currentMonth < 0 && (this.currentMonth = 11, this.currentYear--)) : (this.currentMonth++, this.currentMonth > 11 && (this.currentMonth = 0, this.currentYear++))), this.selectedDay = h, this.selectedMonth = this.currentMonth, this.selectedYear = this.currentYear, this.renderCalendar(this.currentMonth, this.currentYear), this.updateFullInputString();
     }));
+    const c = (a) => {
+      a.stopPropagation();
+    };
+    [this.dom.calendarPopup, this.dom.timePopup, this.dom.yearPickerView].forEach((a) => {
+      a && (a.addEventListener("click", c), a.addEventListener("mousedown", c), a.addEventListener("mouseup", c), a.addEventListener("touchstart", c, { passive: !0 }), a.addEventListener("touchmove", c, { passive: !0 }), a.addEventListener("touchend", c, { passive: !0 }));
+    });
   }
   destroy() {
     this.observer && (this.observer.disconnect(), this.observer = null), document.removeEventListener("click", this.onDocumentClick), window.removeEventListener("resize", this.onWindowResize), window.removeEventListener("scroll", this.onWindowResize), this.dom.calendarPopup && this.dom.calendarPopup.parentNode === document.body && document.body.removeChild(this.dom.calendarPopup), this.dom.timePopup && this.dom.timePopup.parentNode === document.body && document.body.removeChild(this.dom.timePopup), this.dom.warningMsg && this.dom.warningMsg.parentNode === document.body && document.body.removeChild(this.dom.warningMsg), this.container.innerHTML = "", this.dom = null;
@@ -545,8 +551,8 @@ class b {
     }
     let e = [];
     if (this.enableDate) {
-      let i = this.selectedYear.toString().padStart(4, "0"), s = (this.selectedMonth + 1).toString().padStart(2, "0"), r = this.selectedDay.toString().padStart(2, "0");
-      e.push(`${i}-${s}-${r}`);
+      let i = this.selectedYear.toString().padStart(4, "0"), s = (this.selectedMonth + 1).toString().padStart(2, "0"), o = this.selectedDay.toString().padStart(2, "0");
+      e.push(`${i}-${s}-${o}`);
     }
     this.enableTime && e.push(`${this.selectedHour}:${this.selectedMinute}:${this.selectedSecond}`);
     const t = e.join(" ");
@@ -559,15 +565,15 @@ class b {
     if (!this.enableTime) return;
     let i;
     e === "hour" ? i = this.dom.hourCol : e === "minute" ? i = this.dom.minuteCol : e === "second" && (i = this.dom.secondCol);
-    const s = 32, r = i.scrollTop;
-    t === "down" ? i.scrollTo({ top: r + s, behavior: "smooth" }) : i.scrollTo({ top: r - s, behavior: "smooth" });
+    const s = 32, o = i.scrollTop;
+    t === "down" ? i.scrollTo({ top: o + s, behavior: "smooth" }) : i.scrollTo({ top: o - s, behavior: "smooth" });
   }
   getParsedDateFromInput() {
     if (!this.enableDate) return { d: this.realToday.getDate(), m: this.realToday.getMonth(), y: this.realToday.getFullYear() };
     let e = this.dom.input.value;
     const t = this.SEGMENTS.find((l) => l.type === "day"), i = this.SEGMENTS.find((l) => l.type === "month"), s = this.SEGMENTS.find((l) => l.type === "year");
-    let r = parseInt(e.substring(t.start, t.end)), a = parseInt(e.substring(i.start, i.end)) - 1, o = parseInt(e.substring(s.start, s.end));
-    return { d: r, m: a, y: o };
+    let o = parseInt(e.substring(t.start, t.end)), r = parseInt(e.substring(i.start, i.end)) - 1, d = parseInt(e.substring(s.start, s.end));
+    return { d: o, m: r, y: d };
   }
   handleKeydown(e) {
     if (["ArrowRight", "Tab", "Enter"].includes(e.key)) {
@@ -610,14 +616,14 @@ class b {
     if (!this.inputBuffer && !t) return;
     let s = this.inputBuffer ? parseInt(this.inputBuffer) : parseInt(this.dom.input.value.substring(i.start, i.end));
     i.type === "year" && this.inputBuffer.length === 2 && (s = parseInt("20" + this.inputBuffer));
-    let r = s;
-    if (i.type === "year" && this.inputBuffer.length > 0 && this.inputBuffer.length !== 4 && this.inputBuffer.length !== 2 && (s = i.min), s < i.min && (s = i.min), i.max && s > i.max && (s = i.max), s !== r) {
+    let o = s;
+    if (i.type === "year" && this.inputBuffer.length > 0 && this.inputBuffer.length !== 4 && this.inputBuffer.length !== 2 && (s = i.min), s < i.min && (s = i.min), i.max && s > i.max && (s = i.max), s !== o) {
       this.triggerErrorEffect();
-      let o = i.type === "year" ? this.lang.warnings.invalidYear.replace("{year}", s) : this.lang.warnings.invalidDate.replace("{date}", s);
-      this.showWarningMessage(o);
+      let d = i.type === "year" ? this.lang.warnings.invalidYear.replace("{year}", s) : this.lang.warnings.invalidDate.replace("{date}", s);
+      this.showWarningMessage(d);
     }
-    let a = s.toString().padStart(i.maxLen, "0");
-    this.updateInputValue(i.type, a, !0, !0, t), (i.type === "year" || t) && this.validateDayCountInMonth(), this.inputBuffer = "";
+    let r = s.toString().padStart(i.maxLen, "0");
+    this.updateInputValue(i.type, r, !0, !0, t), (i.type === "year" || t) && this.validateDayCountInMonth(), this.inputBuffer = "";
   }
   validateDayCountInMonth() {
     if (!this.enableDate) return;
@@ -628,39 +634,39 @@ class b {
       this.triggerErrorEffect();
       let i = new Date(e.y, e.m, t);
       this.isDateRestricted(i) && (i = this.findNearestValidDate(i));
-      let s = i.getDate().toString().padStart(2, "0"), r = (i.getMonth() + 1).toString().padStart(2, "0"), a = i.getFullYear().toString().padStart(4, "0"), o = `${s}/${r}/${a}`, l = this.lang.warnings.invalidDate.replace("{date}", `<strong>${o}</strong>`);
+      let s = i.getDate().toString().padStart(2, "0"), o = (i.getMonth() + 1).toString().padStart(2, "0"), r = i.getFullYear().toString().padStart(4, "0"), d = `${s}/${o}/${r}`, l = this.lang.warnings.invalidDate.replace("{date}", `<strong>${d}</strong>`);
       this.showWarningMessage(l);
-      let n = this.dom.input.value, m = `${s}/${r}/${a}`;
-      this.enableTime && n.length > 10 && (m += n.substring(10)), this.dom.input.value = m, this.selectedDay = i.getDate(), this.selectedMonth = i.getMonth(), this.selectedYear = i.getFullYear(), this.renderCalendar(this.selectedMonth, this.selectedYear), this.updateHiddenInput();
+      let c = this.dom.input.value, a = `${s}/${o}/${r}`;
+      this.enableTime && c.length > 10 && (a += c.substring(10)), this.dom.input.value = a, this.selectedDay = i.getDate(), this.selectedMonth = i.getMonth(), this.selectedYear = i.getFullYear(), this.renderCalendar(this.selectedMonth, this.selectedYear), this.updateHiddenInput();
     }
   }
-  updateInputValue(e, t, i = !1, s = !0, r = !0) {
-    let a = this.dom.input.value;
-    const o = this.SEGMENTS.find((n) => n.type === e);
-    if (!o) return;
-    let l = a.substring(0, o.start) + t + a.substring(o.end);
+  updateInputValue(e, t, i = !1, s = !0, o = !0) {
+    let r = this.dom.input.value;
+    const d = this.SEGMENTS.find((c) => c.type === e);
+    if (!d) return;
+    let l = r.substring(0, d.start) + t + r.substring(d.end);
     if (this.dom.input.value = l, !(!i && !s)) {
       if (this.enableTime) {
-        const n = this.SEGMENTS.find((p) => p.type === "hour"), d = this.SEGMENTS.find((p) => p.type === "minute"), m = this.SEGMENTS.find((p) => p.type === "second");
-        let h = l.substring(n.start, n.end), c = l.substring(d.start, d.end), u = l.substring(m.start, m.end);
-        isNaN(parseInt(h)) || (this.selectedHour = h), isNaN(parseInt(c)) || (this.selectedMinute = c), isNaN(parseInt(u)) || (this.selectedSecond = u), ["hour", "minute", "second"].includes(e) && this.scrollToValues(this.selectedHour, this.selectedMinute, this.selectedSecond);
+        const c = this.SEGMENTS.find((p) => p.type === "hour"), u = this.SEGMENTS.find((p) => p.type === "minute"), a = this.SEGMENTS.find((p) => p.type === "second");
+        let n = l.substring(c.start, c.end), h = l.substring(u.start, u.end), m = l.substring(a.start, a.end);
+        isNaN(parseInt(n)) || (this.selectedHour = n), isNaN(parseInt(h)) || (this.selectedMinute = h), isNaN(parseInt(m)) || (this.selectedSecond = m), ["hour", "minute", "second"].includes(e) && this.scrollToValues(this.selectedHour, this.selectedMinute, this.selectedSecond);
       }
       if (this.enableDate) {
-        let n = parseInt(l.substring(this.SEGMENTS.find((h) => h.type === "day").start, this.SEGMENTS.find((h) => h.type === "day").end)), d = parseInt(l.substring(this.SEGMENTS.find((h) => h.type === "month").start, this.SEGMENTS.find((h) => h.type === "month").end)) - 1, m = parseInt(l.substring(this.SEGMENTS.find((h) => h.type === "year").start, this.SEGMENTS.find((h) => h.type === "year").end));
-        if (!isNaN(n) && !isNaN(d) && !isNaN(m) && (this.selectedDay = n, this.selectedMonth = d, this.selectedYear = m, ["day", "month", "year"].includes(e))) {
-          let h = new Date(this.selectedYear, this.selectedMonth, this.selectedDay), c = new Date(this.minDate);
-          c.setHours(0, 0, 0, 0);
-          let u = new Date(this.maxDate);
-          u.setHours(0, 0, 0, 0);
+        let c = parseInt(l.substring(this.SEGMENTS.find((n) => n.type === "day").start, this.SEGMENTS.find((n) => n.type === "day").end)), u = parseInt(l.substring(this.SEGMENTS.find((n) => n.type === "month").start, this.SEGMENTS.find((n) => n.type === "month").end)) - 1, a = parseInt(l.substring(this.SEGMENTS.find((n) => n.type === "year").start, this.SEGMENTS.find((n) => n.type === "year").end));
+        if (!isNaN(c) && !isNaN(u) && !isNaN(a) && (this.selectedDay = c, this.selectedMonth = u, this.selectedYear = a, ["day", "month", "year"].includes(e))) {
+          let n = new Date(this.selectedYear, this.selectedMonth, this.selectedDay), h = new Date(this.minDate);
+          h.setHours(0, 0, 0, 0);
+          let m = new Date(this.maxDate);
+          m.setHours(0, 0, 0, 0);
           let p = !0;
-          if (h < c && (s ? (this.selectedYear = this.minDate.getFullYear(), this.selectedMonth = this.minDate.getMonth(), this.selectedDay = this.minDate.getDate()) : p = !1), h > u && (s ? (this.selectedYear = this.maxDate.getFullYear(), this.selectedMonth = this.maxDate.getMonth(), this.selectedDay = this.maxDate.getDate()) : p = !1), s && (h < c || h > u)) {
+          if (n < h && (s ? (this.selectedYear = this.minDate.getFullYear(), this.selectedMonth = this.minDate.getMonth(), this.selectedDay = this.minDate.getDate()) : p = !1), n > m && (s ? (this.selectedYear = this.maxDate.getFullYear(), this.selectedMonth = this.maxDate.getMonth(), this.selectedDay = this.maxDate.getDate()) : p = !1), s && (n < h || n > m)) {
             this.triggerErrorEffect();
-            let g = h < c ? c : u, y = `${g.getDate().toString().padStart(2, "0")}/${(g.getMonth() + 1).toString().padStart(2, "0")}/${g.getFullYear()}`, S = this.lang.warnings.invalidDate.replace("{date}", y);
+            let g = n < h ? h : m, y = `${g.getDate().toString().padStart(2, "0")}/${(g.getMonth() + 1).toString().padStart(2, "0")}/${g.getFullYear()}`, S = this.lang.warnings.invalidDate.replace("{date}", y);
             this.showWarningMessage(S);
             let D = this.selectedDay.toString().padStart(2, "0"), f = (this.selectedMonth + 1).toString().padStart(2, "0"), v = this.selectedYear.toString().padStart(4, "0");
             this.dom.input.value = this.enableTime ? `${D}/${f}/${v} ${l.substring(11)}` : `${D}/${f}/${v}`;
           }
-          if ((p || s) && (this.currentYear = this.selectedYear, this.currentMonth = this.selectedMonth, this.renderCalendar(this.currentMonth, this.currentYear), s && r)) {
+          if ((p || s) && (this.currentYear = this.selectedYear, this.currentMonth = this.selectedMonth, this.renderCalendar(this.currentMonth, this.currentYear), s && o)) {
             let g = new Date(this.selectedYear, this.selectedMonth, this.selectedDay);
             if (this.isDateRestricted(g)) {
               this.triggerErrorEffect();
@@ -697,35 +703,35 @@ class b {
   populateTimeColumn(e, t, i) {
     const s = document.createElement("div");
     s.className = "txydp-spacer", e.appendChild(s);
-    for (let a = 0; a < t; a++) {
-      const o = a.toString().padStart(2, "0"), l = document.createElement("div");
-      l.className = "txydp-time-cell", l.innerText = o, l.dataset.val = o, e.appendChild(l);
+    for (let r = 0; r < t; r++) {
+      const d = r.toString().padStart(2, "0"), l = document.createElement("div");
+      l.className = "txydp-time-cell", l.innerText = d, l.dataset.val = d, e.appendChild(l);
     }
-    const r = document.createElement("div");
-    r.className = "txydp-spacer", e.appendChild(r), e.addEventListener("scroll", () => {
+    const o = document.createElement("div");
+    o.className = "txydp-spacer", e.appendChild(o), e.addEventListener("scroll", () => {
       this.handleScroll(e, i);
-    }), e.addEventListener("wheel", (a) => {
-      a.preventDefault();
-      const o = 32, l = a.deltaY > 0 ? 1 : -1, n = e.scrollTop + l * o;
-      e.scrollTo({ top: n, behavior: "smooth" });
+    }), e.addEventListener("wheel", (r) => {
+      r.preventDefault();
+      const d = 32, l = r.deltaY > 0 ? 1 : -1, c = e.scrollTop + l * d;
+      e.scrollTo({ top: c, behavior: "smooth" });
     }, { passive: !1 });
   }
   handleScroll(e, t) {
-    const s = e.scrollTop, r = Math.round(s / 32), a = e.querySelectorAll(".txydp-time-cell");
-    if (a.forEach((o) => o.classList.remove("active")), a[r]) {
-      a[r].classList.add("active");
-      const o = a[r].dataset.val;
-      t === "hour" && (this.selectedHour = o), t === "minute" && (this.selectedMinute = o), t === "second" && (this.selectedSecond = o), this.updateFullInputString();
+    const s = e.scrollTop, o = Math.round(s / 32), r = e.querySelectorAll(".txydp-time-cell");
+    if (r.forEach((d) => d.classList.remove("active")), r[o]) {
+      r[o].classList.add("active");
+      const d = r[o].dataset.val;
+      t === "hour" && (this.selectedHour = d), t === "minute" && (this.selectedMinute = d), t === "second" && (this.selectedSecond = d), this.updateFullInputString();
     }
   }
   scrollToValues(e, t, i) {
-    const r = (a, o) => {
-      const l = parseInt(o);
-      a.scrollTop = l * 32;
-      const n = a.querySelectorAll(".txydp-time-cell");
-      n.forEach((d) => d.classList.remove("active")), n[l] && n[l].classList.add("active");
+    const o = (r, d) => {
+      const l = parseInt(d);
+      r.scrollTop = l * 32;
+      const c = r.querySelectorAll(".txydp-time-cell");
+      c.forEach((u) => u.classList.remove("active")), c[l] && c[l].classList.add("active");
     };
-    r(this.dom.hourCol, e), r(this.dom.minuteCol, t), r(this.dom.secondCol, i);
+    o(this.dom.hourCol, e), o(this.dom.minuteCol, t), o(this.dom.secondCol, i);
   }
   updateFullInputString() {
     let e = [];
@@ -747,8 +753,8 @@ class b {
     let t = null;
     for (let i = this.minDate.getFullYear(); i <= this.maxDate.getFullYear(); i++) {
       const s = document.createElement("div");
-      s.classList.add("txydp-year-item"), s.innerText = i, i === this.currentYear && (s.classList.add("selected"), t = s), i === e && s.classList.add("current-year"), s.addEventListener("click", (r) => {
-        r.stopPropagation(), this.currentYear = i, this.currentYear === this.minDate.getFullYear() && this.currentMonth < this.minDate.getMonth() && (this.currentMonth = this.minDate.getMonth()), this.currentYear === this.maxDate.getFullYear() && this.currentMonth > this.maxDate.getMonth() && (this.currentMonth = this.maxDate.getMonth()), this.renderCalendar(this.currentMonth, this.currentYear), this.showCalendarView();
+      s.classList.add("txydp-year-item"), s.innerText = i, i === this.currentYear && (s.classList.add("selected"), t = s), i === e && s.classList.add("current-year"), s.addEventListener("click", (o) => {
+        o.stopPropagation(), this.currentYear = i, this.currentYear === this.minDate.getFullYear() && this.currentMonth < this.minDate.getMonth() && (this.currentMonth = this.minDate.getMonth()), this.currentYear === this.maxDate.getFullYear() && this.currentMonth > this.maxDate.getMonth() && (this.currentMonth = this.maxDate.getMonth()), this.renderCalendar(this.currentMonth, this.currentYear), this.showCalendarView();
       }), this.dom.yearPickerView.appendChild(s);
     }
     t && setTimeout(() => t.scrollIntoView({ block: "center", behavior: "auto" }), 0);
@@ -764,10 +770,10 @@ class b {
     let t = 1;
     const i = 365, s = e.getTime();
     for (; t < i; ) {
+      const o = new Date(s);
+      if (o.setDate(o.getDate() + t), !this.isDateRestricted(o)) return o;
       const r = new Date(s);
-      if (r.setDate(r.getDate() + t), !this.isDateRestricted(r)) return r;
-      const a = new Date(s);
-      if (a.setDate(a.getDate() - t), !this.isDateRestricted(a)) return a;
+      if (r.setDate(r.getDate() - t), !this.isDateRestricted(r)) return r;
       t++;
     }
     return e;
@@ -782,8 +788,8 @@ class b {
     const t = this.dom.warningMsg;
     if (!t || !this.dom.inputGroup) return;
     t.innerHTML = e;
-    const i = this.dom.inputGroup.getBoundingClientRect(), s = window.scrollY || document.documentElement.scrollTop, r = window.scrollX || document.documentElement.scrollLeft, a = i.left + r + i.width / 2, o = i.top + s - 10;
-    t.style.left = `${a}px`, t.style.top = `${o}px`, t.classList.add("visible"), this.warningTimeout && clearTimeout(this.warningTimeout), this.warningTimeout = setTimeout(() => {
+    const i = this.dom.inputGroup.getBoundingClientRect(), s = window.scrollY || document.documentElement.scrollTop, o = window.scrollX || document.documentElement.scrollLeft, r = i.left + o + i.width / 2, d = i.top + s - 10;
+    t.style.left = `${r}px`, t.style.top = `${d}px`, t.classList.add("visible"), this.warningTimeout && clearTimeout(this.warningTimeout), this.warningTimeout = setTimeout(() => {
       t.classList.remove("visible");
     }, 4e3);
   }
@@ -794,27 +800,27 @@ class b {
     i.setHours(0, 0, 0, 0);
     let s = new Date(this.maxDate);
     s.setHours(0, 0, 0, 0);
-    let r = new Date(t, e - 1, 1), a = new Date(t, e + 1, 1);
-    r < i && r.getMonth() !== i.getMonth() ? this.dom.prevBtn.classList.add("disabled") : this.dom.prevBtn.classList.remove("disabled"), a > s && a.getMonth() !== s.getMonth() ? this.dom.nextBtn.classList.add("disabled") : this.dom.nextBtn.classList.remove("disabled");
-    let o = new Date(t, e, 1).getDay(), l = o === 0 ? 6 : o - 1, n = new Date(t, e + 1, 0).getDate(), d = new Date(t, e, 0).getDate();
-    for (let h = 0; h < l; h++) {
-      const c = d - l + 1 + h, u = document.createElement("div");
-      u.classList.add("txydp-day", "other-month"), u.innerText = c;
-      let p = new Date(t, e - 1, c);
-      p < i && (u.style.visibility = "hidden", u.style.pointerEvents = "none"), this.isDateRestricted(p) && (u.style.pointerEvents = "none"), this.dom.calendarDays.appendChild(u);
+    let o = new Date(t, e - 1, 1), r = new Date(t, e + 1, 1);
+    o < i && o.getMonth() !== i.getMonth() ? this.dom.prevBtn.classList.add("disabled") : this.dom.prevBtn.classList.remove("disabled"), r > s && r.getMonth() !== s.getMonth() ? this.dom.nextBtn.classList.add("disabled") : this.dom.nextBtn.classList.remove("disabled");
+    let d = new Date(t, e, 1).getDay(), l = d === 0 ? 6 : d - 1, c = new Date(t, e + 1, 0).getDate(), u = new Date(t, e, 0).getDate();
+    for (let n = 0; n < l; n++) {
+      const h = u - l + 1 + n, m = document.createElement("div");
+      m.classList.add("txydp-day", "other-month"), m.innerText = h;
+      let p = new Date(t, e - 1, h);
+      p < i && (m.style.visibility = "hidden", m.style.pointerEvents = "none"), this.isDateRestricted(p) && (m.style.pointerEvents = "none"), this.dom.calendarDays.appendChild(m);
     }
-    for (let h = 1; h <= n; h++) {
-      const c = document.createElement("div");
-      c.classList.add("txydp-day"), c.innerText = h;
-      let u = new Date(t, e, h);
-      u < i || u > s ? (c.style.visibility = "hidden", c.style.pointerEvents = "none") : this.isDateRestricted(u) && c.classList.add("restricted-day"), this.selectedDay !== null && h === this.selectedDay && e === this.selectedMonth && t === this.selectedYear && !c.classList.contains("restricted-day") && c.classList.add("selected"), h === this.realToday.getDate() && e === this.realToday.getMonth() && t === this.realToday.getFullYear() && c.classList.add("today"), this.dom.calendarDays.appendChild(c);
+    for (let n = 1; n <= c; n++) {
+      const h = document.createElement("div");
+      h.classList.add("txydp-day"), h.innerText = n;
+      let m = new Date(t, e, n);
+      m < i || m > s ? (h.style.visibility = "hidden", h.style.pointerEvents = "none") : this.isDateRestricted(m) && h.classList.add("restricted-day"), this.selectedDay !== null && n === this.selectedDay && e === this.selectedMonth && t === this.selectedYear && !h.classList.contains("restricted-day") && h.classList.add("selected"), n === this.realToday.getDate() && e === this.realToday.getMonth() && t === this.realToday.getFullYear() && h.classList.add("today"), this.dom.calendarDays.appendChild(h);
     }
-    const m = l + n;
-    for (let h = 1; h <= 42 - m; h++) {
-      const c = document.createElement("div");
-      c.classList.add("txydp-day", "other-month"), c.innerText = h;
-      let u = new Date(t, e + 1, h);
-      u > s && (c.style.visibility = "hidden", c.style.pointerEvents = "none"), this.isDateRestricted(u) && (c.style.pointerEvents = "none"), this.dom.calendarDays.appendChild(c);
+    const a = l + c;
+    for (let n = 1; n <= 42 - a; n++) {
+      const h = document.createElement("div");
+      h.classList.add("txydp-day", "other-month"), h.innerText = n;
+      let m = new Date(t, e + 1, n);
+      m > s && (h.style.visibility = "hidden", h.style.pointerEvents = "none"), this.isDateRestricted(m) && (h.style.pointerEvents = "none"), this.dom.calendarDays.appendChild(h);
     }
   }
 }
